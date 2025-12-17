@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminUserController;
 
 // Redirect Home to Login
 Route::get('/', function () {
@@ -26,3 +27,9 @@ Route::get('/appointments', [AppointmentController::class, 'index']);
 Route::post('/appointments/{id}/status', [AppointmentController::class, 'updateStatus']);
 Route::post('/appointments/{id}/note', [AppointmentController::class, 'saveNote']);
 Route::delete('/appointments/{id}', [AppointmentController::class, 'destroy']);
+
+// --- Admin User Management Routes ---
+Route::get('/admin/users', [AdminUserController::class, 'index']);
+Route::post('/admin/users', [AdminUserController::class, 'store']); // Create User
+Route::delete('/admin/staff/{id}', [AdminUserController::class, 'destroyStaff']); // Delete Staff
+Route::delete('/admin/clients/{id}', [AdminUserController::class, 'destroyClient']); // Delete Client
